@@ -178,7 +178,15 @@
             var w = h = (radius * scale);
             ctx.clearRect(point.x - w, point.y - h, 4 * w, 4 * h);
         },
-        hover: function(x, y) {`n            var point = this.heart.point;`n            var scale = this.heart.scale;`n            // Expand clickable area`n            var dx = x - point.x;`n            var dy = y - point.y;`n            var distance = Math.sqrt(dx * dx + dy * dy);`n            return distance < (100 * scale);`n        }
+        hover: function(x, y) {
+            var point = this.heart.point;
+            var scale = this.heart.scale;
+            // Expand clickable area - distance based detection
+            var dx = x - point.x;
+            var dy = y - point.y;
+            var distance = Math.sqrt(dx * dx + dy * dy);
+            return distance < (100 * scale);
+        }
     }
 
     Footer = function(tree, width, height, speed) {
@@ -707,7 +715,15 @@
             var w = h = (radius * scale);
             ctx.clearRect(point.x - w, point.y - h, 4 * w, 4 * h);
         },
-        hover: function(x, y) {`n            var point = this.heart.point;`n            var scale = this.heart.scale;`n            // Expand clickable area`n            var dx = x - point.x;`n            var dy = y - point.y;`n            var distance = Math.sqrt(dx * dx + dy * dy);`n            return distance < (100 * scale);`n        }
+        hover: function(x, y) {
+            var point = this.heart.point;
+            var scale = this.heart.scale;
+            // Expand clickable area - distance based detection
+            var dx = x - point.x;
+            var dy = y - point.y;
+            var distance = Math.sqrt(dx * dx + dy * dy);
+            return distance < (100 * scale);
+        }
     }
 
     Footer = function(tree, width, height, speed) {
