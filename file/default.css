@@ -1,18 +1,184 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #000; /* solid black background, images removed */
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background-attachment: fixed;
   color: white;
   font-size: 14px;
-  font-family: sans-serif;
-  overflow: auto;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Animated Background Gradient */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 20, 147, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(255, 105, 180, 0.08) 0%, transparent 50%);
+  animation: gradientShift 15s ease infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes gradientShift {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 a {
   color: white;
   font-size: 14px;
 }
+
+/* Birthday Header */
+#birthday-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 40px 20px;
+  z-index: 1000;
+  background: linear-gradient(180deg, rgba(255, 20, 147, 0.3) 0%, transparent 100%);
+  backdrop-filter: blur(10px);
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: all 1s ease-out;
+}
+
+#birthday-header.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#birthday-header.fade-out {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: all 1s ease-in;
+}
+
+.birthday-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3em;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(45deg, #ff1493, #ff69b4, #ffc0cb, #ff1493);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientFlow 3s ease infinite;
+  text-shadow: 0 0 30px rgba(255, 20, 147, 0.5);
+}
+
+.birthday-name {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5em;
+  font-weight: 700;
+  margin: 10px 0;
+  color: #ffc0cb;
+  text-shadow: 0 0 20px rgba(255, 192, 203, 0.8), 0 0 40px rgba(255, 105, 180, 0.5);
+  animation: glow 2s ease-in-out infinite;
+}
+
+.heart-divider {
+  font-size: 2em;
+  margin-top: 10px;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 20px rgba(255, 192, 203, 0.8), 0 0 40px rgba(255, 105, 180, 0.5); }
+  50% { text-shadow: 0 0 30px rgba(255, 192, 203, 1), 0 0 60px rgba(255, 105, 180, 0.8); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* Floating Hearts */
+#floating-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -50px;
+  animation: floatUp 6s ease-in infinite;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% {
+    bottom: -50px;
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(100px) rotate(180deg);
+  }
+  100% {
+    bottom: 110%;
+    transform: translateX(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Particles */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { 
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
 #main {
   width: 100%;
+  position: relative;
+  z-index: 10;
 }
 #wrap {
   position: relative;
@@ -20,22 +186,77 @@ a {
   width: 1100px;
   height: 680px;
   margin-top: 10px;
+  max-width: 100%;
+  z-index: 50;
 }
 #text {
-  width: 272px;
-  height: 560px;
-  left: 188px;
-  top: 80px;
+  width: 380px;
+  height: auto;
+  min-height: 300px;
+  left: 50px;
+  top: 120px;
   position: absolute;
+  z-index: 999;
+  pointer-events: none;
 }
 #code {
   display: none;
-  color: rgb(196, 255, 255);
-  font-size: 16px;
-  margin-top: 70px;
-  line-height: 25px;
-  font-size: larger;
-  font-weight: bolder;
+  color: #ffffff;
+  font-size: 15px;
+  margin-top: 0;
+  line-height: 26px;
+  font-weight: 700;
+  text-shadow: 
+    0 0 15px rgba(255, 20, 147, 1),
+    0 0 25px rgba(255, 105, 180, 0.8),
+    0 3px 6px rgba(0, 0, 0, 1),
+    2px 2px 4px rgba(0, 0, 0, 0.9);
+  padding: 20px 25px;
+  border-radius: 20px;
+  background: rgba(138, 43, 226, 0.75);
+  backdrop-filter: blur(20px);
+  border: 3px solid rgba(255, 105, 180, 0.8);
+  box-shadow: 
+    0 8px 32px rgba(255, 20, 147, 0.6),
+    inset 0 0 40px rgba(255, 105, 180, 0.3),
+    0 0 50px rgba(255, 20, 147, 0.4);
+  max-width: 100%;
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+.say {
+  display: inline-block;
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 1;
+  color: #ffffff;
+  text-shadow: 
+    0 0 10px rgba(255, 20, 147, 1),
+    2px 2px 4px rgba(0, 0, 0, 1);
+  margin: 2px 0;
+}
+
+.say:nth-child(1) { animation-delay: 0.2s; }
+.say:nth-child(3) { animation-delay: 0.4s; }
+.say:nth-child(5) { animation-delay: 0.6s; }
+.say:nth-child(7) { animation-delay: 0.8s; }
+.say:nth-child(9) { animation-delay: 1s; }
+.say:nth-child(11) { animation-delay: 1.2s; }
+.say:nth-child(13) { animation-delay: 1.4s; }
+.say:nth-child(15) { animation-delay: 1.6s; }
+.say:nth-child(17) { animation-delay: 1.8s; }
+.say:nth-child(19) { animation-delay: 2s; }
+.say:nth-child(21) { animation-delay: 2.2s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 #clock-box {
   position: absolute;
@@ -58,6 +279,8 @@ a {
   margin: 0 auto;
   width: 1100px;
   height: 680px;
+  max-width: 100%;
+  display: block;
 }
 #error {
   margin: 0 auto;
@@ -68,9 +291,7 @@ a {
 .hand {
   cursor: pointer;
 }
-.say {
-  margin-left: 5px;
-}
+
 .space {
   margin-right: 150px;
 }
@@ -80,5 +301,178 @@ a {
   margin-top:450px;
   font-size: 25px;
   font-family: monospace;
+}
 
+/* Modern Enhancements */
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff1493, #ff69b4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff69b4, #ff1493);
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 12px;
+  }
+  
+  .birthday-title {
+    font-size: 2em;
+  }
+  
+  .birthday-name {
+    font-size: 1.8em;
+  }
+  
+  #birthday-header {
+    padding: 20px 10px;
+  }
+  
+  #wrap {
+    width: 100% !important;
+    height: 100vh !important;
+    margin-top: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  #text {
+    width: calc(100% - 30px) !important;
+    max-width: 400px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 8% !important;
+    height: auto;
+    min-height: auto;
+  }
+  
+  #code {
+    font-size: 13px;
+    line-height: 24px;
+    margin-top: 0;
+    padding: 18px 20px;
+    border-radius: 15px;
+  }
+  
+  #canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100%;
+  }
+  
+  #clock-box {
+    left: 50%;
+    transform: translateX(-50%);
+    top: auto;
+    bottom: 10px;
+    font-size: 14px;
+  }
+  
+  #clock {
+    margin-left: 0;
+    font-size: 12px;
+  }
+  
+  #clock .digit {
+    font-size: 24px;
+  }
+  
+  .say {
+    display: block;
+    margin: 6px 0;
+  }
+  
+  #clock-box {
+    left: 50%;
+    transform: translateX(-50%);
+    top: auto;
+    bottom: 20px;
+    font-size: 16px;
+  }
+  
+  #clock {
+    margin-left: 0;
+    font-size: 12px;
+  }
+  
+  #clock .digit {
+    font-size: 28px;
+  }
+  
+  .say {
+    display: block;
+    margin: 8px 0;
+  }
+  
+  .floating-heart {
+    font-size: 20px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .birthday-title {
+    font-size: 1.5em;
+  }
+  
+  .birthday-name {
+    font-size: 1.3em;
+  }
+  
+  #text {
+    width: calc(100% - 20px) !important;
+    max-width: 350px !important;
+  }
+  
+  #code {
+    font-size: 11px;
+    line-height: 21px;
+    padding: 15px 18px;
+    border-radius: 12px;
+  }
+  
+  .floating-heart {
+    font-size: 16px !important;
+  }
+  
+  .particle {
+    width: 3px;
+    height: 3px;
+  }
+}
+
+/* Landscape orientation for mobile */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  #birthday-header {
+    padding: 5px;
+  }
+  
+  .birthday-title {
+    font-size: 1.3em;
+  }
+  
+  .birthday-name {
+    font-size: 1.1em;
+  }
+  
+  #code {
+    font-size: 10px;
+    line-height: 18px;
+    margin-top: 5px;
+    padding: 8px;
+  }
 }

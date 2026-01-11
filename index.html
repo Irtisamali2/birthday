@@ -2,7 +2,9 @@
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>HBD love</title>	    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday Fatima Khan ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="file/default.css">
     <script type="text/javascript" src="file/jquery.min.js"></script>
     <script type="text/javascript" src="file/jscex.min.js"></script>
@@ -21,6 +23,21 @@
     </script>
 </head>
 <body>
+    <!-- Floating Hearts Background -->
+    <div id="floating-hearts"></div>
+    
+    <!-- Particles Background -->
+    <div id="particles"></div>
+    
+    <!-- Romantic Header -->
+    <div id="birthday-header">
+        <h1 class="birthday-title">Happy Birthday</h1>
+        <h2 class="birthday-name">Fatima Khan</h2>
+        <div class="heart-divider">
+            <span>💝</span>
+        </div>
+    </div>
+    
     <div id="main">
         <div id="error"><a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI">Chrome</a> (<a href="http://firefox.com.cn/download/">Firefox</a>)</div>
         <audio autoplay="autoplay" height="100" width="100" id="myAudio">
@@ -30,13 +47,17 @@
         <div id="wrap">
             <div id="text">
                 <div id="code">
-                    <span class="say">Hey you 💞</span><br>
-                    <span class="say">Happy Birthday 🎈</span><br>
-                    <span class="say">May God bless you 🍀</span><br>
-                    <span class="say">And give u many happiness 💕</span><br>
-                    <span class="say">Just saying... you're pretty awesome ❤️</span><br>
-                    <span class="say">Sending good vibes and maybe a wink 😏</span><br>
-                    <span class="say">Hope u have a great day today ❤️😘</span><br>
+                    <span class="say fade-in">My Dearest Fatima 💖</span><br>
+                    <span class="say fade-in">Happy Birthday to the most special person! 🎂✨</span><br>
+                    <span class="say fade-in">Your presence makes every moment magical 🌟</span><br>
+                    <span class="say fade-in">May Allah shower His blessings upon you 🤲</span><br>
+                    <span class="say fade-in">Your smile brightens even the darkest days 😊💫</span><br>
+                    <span class="say fade-in">You are a true blessing in this world 🎈</span><br>
+                    <span class="say fade-in">May all your dreams come true today & always 💕</span><br>
+                    <span class="say fade-in">You deserve endless love & happiness ❤️</span><br>
+                    <span class="say fade-in">Wishing you joy beyond measure 🎊</span><br>
+                    <span class="say fade-in">Today we celebrate YOU! 🎉😘</span><br>
+                    <span class="say fade-in">Forever grateful to have you in my life 💝</span><br>
                 </div>
             </div>
             <div id="clock-box">
@@ -55,16 +76,59 @@
             return false;
         }
 
-        var width = canvas.width();
-        var height = canvas.height();        
+        // Responsive canvas sizing
+        var isMobile = window.innerWidth <= 768;
+        var width = isMobile ? window.innerWidth : Math.min(1100, window.innerWidth - 40);
+        var height = isMobile ? window.innerHeight - 20 : Math.min(680, window.innerHeight - 100);
+        
+        $('#wrap').css({
+            'width': width + 'px',
+            'height': height + 'px'
+        });
+        
         canvas.attr("width", width);
         canvas.attr("height", height);
+        
+        // Adjust text position responsively
+        if (isMobile) {
+            $('#text').css({
+                'left': '50%',
+                'transform': 'translateX(-50%)',
+                'top': '8%',
+                'width': 'calc(100% - 30px)',
+                'max-width': '400px'
+            });
+        } else {
+            $('#text').css({
+                'left': '50px',
+                'top': '120px',
+                'width': '380px',
+                'transform': 'none'
+            });
+        }
+
+        // Scale tree coordinates based on canvas size
+        var scale = isMobile ? width / 1100 : 1;
+        var offsetX = isMobile ? 0 : 0;
+        var offsetY = isMobile ? 0 : 0;
+        
+        function scaleCoord(coords) {
+            var scaled = [];
+            for (var i = 0; i < coords.length; i++) {
+                if (i % 2 === 0) { // x coordinate
+                    scaled.push(coords[i] * scale + offsetX);
+                } else { // y coordinate
+                    scaled.push(coords[i] * scale + offsetY);
+                }
+            }
+            return scaled;
+        }
 
         var opts = {
             seed: {
                 x: width / 2 - 20,
-                color: "rgb(190, 26, 37)",
-                scale: 2
+                color: "rgb(255, 20, 147)",
+                scale: isMobile ? 1.2 : 2
             },
             branch: [
                 [535, 680, 570, 250, 500, 200, 30, 100, [
@@ -86,11 +150,11 @@
             ],
             bloom: {
                 num: 700,
-                width: 1080,
-                height: 650,
+                width: width,
+                height: height,
             },
             footer: {
-                width: 1200,
+                width: width,
                 height: 5,
                 speed: 10,
             }
@@ -110,6 +174,7 @@
                 hold = 0; 
                 canvas.unbind("click");
                 canvas.unbind("mousemove");
+                canvas.unbind("touchstart");
                 canvas.removeClass('hand');
             }
         }).mousemove(function(e) {
@@ -117,6 +182,20 @@
             x = e.pageX - offset.left;
             y = e.pageY - offset.top;
             canvas.toggleClass('hand', seed.hover(x, y));
+        }).on('touchstart', function(e) {
+            playAudio();
+            e.preventDefault();
+            var touch = e.originalEvent.touches[0];
+            var offset = canvas.offset();
+            var x = touch.pageX - offset.left;
+            var y = touch.pageY - offset.top;
+            if (seed.hover(x, y)) {
+                hold = 0;
+                canvas.unbind("click");
+                canvas.unbind("mousemove");
+                canvas.unbind("touchstart");
+                canvas.removeClass('hand');
+            }
         });
 
         var seedAnimate = eval(Jscex.compile("async", function () {
@@ -165,7 +244,8 @@
         }));
 
         var textAnimate = eval(Jscex.compile("async", function () {
-            $("#code").show().typewriter();
+            $("#code").show();
+            $("#code").typewriter();
         }));
 	    
         var runAsync = eval(Jscex.compile("async", function () {
@@ -177,7 +257,93 @@
         }));
 
         runAsync().start();
+        
+        // Handle window resize for responsive design
+        var resizeTimer;
+        $(window).on('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                location.reload();
+            }, 500);
+        });
     })();
+    </script>
+    
+    <!-- Floating Hearts Animation -->
+    <script>
+    (function() {
+        var heartsContainer = document.getElementById('floating-hearts');
+        var heartSymbols = ['❤️', '💖', '💕', '💗', '💓', '💝', '💘', '💞'];
+        
+        function createHeart() {
+            var heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heart.style.opacity = Math.random() * 0.5 + 0.3;
+            
+            heartsContainer.appendChild(heart);
+            
+            setTimeout(function() {
+                heart.remove();
+            }, 7000);
+        }
+        
+        // Create hearts periodically
+        setInterval(createHeart, 300);
+        
+        // Initial burst of hearts
+        for(var i = 0; i < 15; i++) {
+            setTimeout(createHeart, i * 200);
+        }
+    })();
+    </script>
+    
+    <!-- Particles Animation -->
+    <script>
+    (function() {
+        var particlesContainer = document.getElementById('particles');
+        
+        function createParticle() {
+            var particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            
+            particlesContainer.appendChild(particle);
+            
+            setTimeout(function() {
+                particle.remove();
+            }, 5000);
+        }
+        
+        // Create particles periodically
+        setInterval(createParticle, 100);
+        
+        // Initial particles
+        for(var i = 0; i < 50; i++) {
+            setTimeout(createParticle, i * 50);
+        }
+    })();
+    </script>
+    
+    <!-- Header Animation -->
+    <script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('#birthday-header').addClass('show');
+        }, 500);
+        
+        // Fade out header after animation completes
+        setTimeout(function() {
+            $('#birthday-header').addClass('fade-out');
+        }, 5000);
+    });
     </script>
 </body>
 </html>
