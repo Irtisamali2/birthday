@@ -51,6 +51,16 @@ a {
   transform: translateY(-100%);
   opacity: 0;
   transition: all 1s ease-out;
+  cursor: pointer;
+}
+
+#birthday-header:hover {
+  background: linear-gradient(180deg, rgba(255, 20, 147, 0.4) 0%, transparent 100%);
+  transform: translateY(0) scale(1.02);
+}
+
+#birthday-header:active {
+  transform: translateY(0) scale(0.98);
 }
 
 #birthday-header.show {
@@ -92,6 +102,21 @@ a {
   font-size: 2em;
   margin-top: 10px;
   animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.heart-divider::after {
+  content: 'Click Me :)';
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.4em;
+  margin-top: 10px;
+  color: rgba(255, 192, 203, 0.9);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 @keyframes gradientFlow {

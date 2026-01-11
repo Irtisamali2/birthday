@@ -30,7 +30,7 @@
     <div id="particles"></div>
     
     <!-- Romantic Header -->
-    <div id="birthday-header">
+    <div id="birthday-header" style="cursor: pointer;">
         <h1 class="birthday-title">Happy Birthday</h1>
         <h2 class="birthday-name">Fatima Khan</h2>
         <div class="heart-divider">
@@ -339,10 +339,16 @@
             $('#birthday-header').addClass('show');
         }, 500);
         
-        // Fade out header after animation completes
-        setTimeout(function() {
-            $('#birthday-header').addClass('fade-out');
-        }, 5000);
+        // Make header clickable to start animation
+        $('#birthday-header').on('click', function() {
+            playAudio();
+            $(this).addClass('fade-out');
+            hold = 0;
+            canvas.unbind("click");
+            canvas.unbind("mousemove");
+            canvas.unbind("touchstart");
+            canvas.removeClass('hand');
+        });
     });
     </script>
 </body>
