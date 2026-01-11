@@ -281,6 +281,9 @@ a {
   height: 680px;
   max-width: 100%;
   display: block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 #error {
   margin: 0 auto;
@@ -346,9 +349,13 @@ a {
   #wrap {
     width: 100% !important;
     height: 100vh !important;
-    margin-top: 0;
+    margin: 0 auto !important;
     padding: 0;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
   }
   
   #text {
