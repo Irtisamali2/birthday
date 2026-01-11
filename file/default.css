@@ -352,22 +352,22 @@ a {
   }
   
   #text {
-    width: calc(100% - 40px) !important;
-    max-width: 90% !important;
+    width: calc(100% - 30px) !important;
+    max-width: 280px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    top: 5% !important;
+    top: 2% !important;
     height: auto;
     min-height: auto;
   }
   
   #code {
-    font-size: 12px;
-    line-height: 22px;
+    font-size: 10px;
+    line-height: 18px;
     margin-top: 0;
-    padding: 15px;
-    border-radius: 12px;
-    max-height: 70vh;
+    padding: 12px;
+    border-radius: 10px;
+    max-height: 35vh;
     overflow-y: auto;
   }
   
@@ -436,20 +436,21 @@ a {
   }
   
   #text {
-    width: calc(100% - 30px) !important;
-    max-width: 95% !important;
-    top: 3% !important;
+    width: calc(100% - 20px) !important;
+    max-width: 260px !important;
+    top: 2% !important;
   }
   
   #code {
-    font-size: 11px;
-    line-height: 20px;
-    padding: 12px;
-    border-radius: 10px;
+    font-size: 9px;
+    line-height: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    max-height: 30vh;
   }
   
   .say {
-    margin: 5px 0;
+    margin: 4px 0;
   }
   
   .floating-heart {
@@ -465,31 +466,31 @@ a {
 /* Landscape orientation for mobile */
 @media screen and (max-width: 768px) and (orientation: landscape) {
   #birthday-header {
-    padding: 8px 10px;
+    padding: 5px 10px;
   }
   
   .birthday-title {
-    font-size: 1.4em;
-  }
-  
-  .birthday-name {
     font-size: 1.2em;
   }
   
+  .birthday-name {
+    font-size: 1em;
+  }
+  
   #text {
-    top: 2% !important;
-    max-width: 45% !important;
+    top: 1% !important;
+    max-width: 40% !important;
   }
   
   #code {
-    font-size: 10px;
-    line-height: 18px;
+    font-size: 8px;
+    line-height: 14px;
     margin-top: 5px;
-    padding: 10px;
-    max-height: 80vh;
+    padding: 8px;
+    max-height: 60vh;
   }
   
   .say {
-    margin: 3px 0;
+    margin: 2px 0;
   }
 }
