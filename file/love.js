@@ -178,11 +178,7 @@
             var w = h = (radius * scale);
             ctx.clearRect(point.x - w, point.y - h, 4 * w, 4 * h);
         },
-        hover: function(x, y) {
-            var ctx = this.tree.ctx;
-            var pixel = ctx.getImageData(x, y, 1, 1);
-            return pixel.data[3] == 255
-        }
+        hover: function(x, y) {`n            var point = this.heart.point;`n            var scale = this.heart.scale;`n            // Expand clickable area`n            var dx = x - point.x;`n            var dy = y - point.y;`n            var distance = Math.sqrt(dx * dx + dy * dy);`n            return distance < (100 * scale);`n        }
     }
 
     Footer = function(tree, width, height, speed) {
@@ -711,11 +707,7 @@
             var w = h = (radius * scale);
             ctx.clearRect(point.x - w, point.y - h, 4 * w, 4 * h);
         },
-        hover: function(x, y) {
-            var ctx = this.tree.ctx;
-            var pixel = ctx.getImageData(x, y, 1, 1);
-            return pixel.data[3] == 255
-        }
+        hover: function(x, y) {`n            var point = this.heart.point;`n            var scale = this.heart.scale;`n            // Expand clickable area`n            var dx = x - point.x;`n            var dy = y - point.y;`n            var distance = Math.sqrt(dx * dx + dy * dy);`n            return distance < (100 * scale);`n        }
     }
 
     Footer = function(tree, width, height, speed) {

@@ -51,16 +51,6 @@ a {
   transform: translateY(-100%);
   opacity: 0;
   transition: all 1s ease-out;
-  cursor: pointer;
-}
-
-#birthday-header:hover {
-  background: linear-gradient(180deg, rgba(255, 20, 147, 0.4) 0%, transparent 100%);
-  transform: translateY(0) scale(1.02);
-}
-
-#birthday-header:active {
-  transform: translateY(0) scale(0.98);
 }
 
 #birthday-header.show {
@@ -102,21 +92,6 @@ a {
   font-size: 2em;
   margin-top: 10px;
   animation: heartbeat 1.5s ease-in-out infinite;
-}
-
-.heart-divider::after {
-  content: 'Click Me :)';
-  display: block;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.4em;
-  margin-top: 10px;
-  color: rgba(255, 192, 203, 0.9);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
 }
 
 @keyframes gradientFlow {
@@ -377,21 +352,23 @@ a {
   }
   
   #text {
-    width: calc(100% - 30px) !important;
-    max-width: 400px !important;
+    width: calc(100% - 40px) !important;
+    max-width: 90% !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    top: 8% !important;
+    top: 5% !important;
     height: auto;
     min-height: auto;
   }
   
   #code {
-    font-size: 13px;
-    line-height: 24px;
+    font-size: 12px;
+    line-height: 22px;
     margin-top: 0;
-    padding: 18px 20px;
-    border-radius: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    max-height: 70vh;
+    overflow-y: auto;
   }
   
   #canvas {
@@ -451,23 +428,28 @@ a {
 
 @media screen and (max-width: 480px) {
   .birthday-title {
-    font-size: 1.5em;
+    font-size: 1.6em;
   }
   
   .birthday-name {
-    font-size: 1.3em;
+    font-size: 1.4em;
   }
   
   #text {
-    width: calc(100% - 20px) !important;
-    max-width: 350px !important;
+    width: calc(100% - 30px) !important;
+    max-width: 95% !important;
+    top: 3% !important;
   }
   
   #code {
     font-size: 11px;
-    line-height: 21px;
-    padding: 15px 18px;
-    border-radius: 12px;
+    line-height: 20px;
+    padding: 12px;
+    border-radius: 10px;
+  }
+  
+  .say {
+    margin: 5px 0;
   }
   
   .floating-heart {
@@ -483,21 +465,31 @@ a {
 /* Landscape orientation for mobile */
 @media screen and (max-width: 768px) and (orientation: landscape) {
   #birthday-header {
-    padding: 5px;
+    padding: 8px 10px;
   }
   
   .birthday-title {
-    font-size: 1.3em;
+    font-size: 1.4em;
   }
   
   .birthday-name {
-    font-size: 1.1em;
+    font-size: 1.2em;
+  }
+  
+  #text {
+    top: 2% !important;
+    max-width: 45% !important;
   }
   
   #code {
     font-size: 10px;
     line-height: 18px;
     margin-top: 5px;
-    padding: 8px;
+    padding: 10px;
+    max-height: 80vh;
+  }
+  
+  .say {
+    margin: 3px 0;
   }
 }
